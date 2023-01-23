@@ -1,13 +1,14 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import products from "../ProductData";
+import Product from "./Product";
 const Home = () => {
      return (
           <>
                <Row>
                     {products.map((item) => (
-                         <Col>
-                              <h3>{item.name}</h3>
+                         <Col md={3} key={item._id}>
+                              <Product product={item}/>
                          </Col>
                     ))}
                </Row>

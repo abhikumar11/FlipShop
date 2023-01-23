@@ -6,7 +6,7 @@ function App() {
      return (
           <>
                <Header />
-               <main>
+               <main className="my-3">
                     <Container>
                          <h1>Flip Shop</h1>
                          <Home />
