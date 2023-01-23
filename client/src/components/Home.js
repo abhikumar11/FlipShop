@@ -1,9 +1,18 @@
-import React from 'react'
-
+import React from "react";
+import { Col, Row } from "react-bootstrap";
+import products from "../Products";
 const Home = () => {
-  return (
-    <div></div>
-  )
-}
+     return (
+          <>
+               <Row>
+                    {products.map((item) => (
+                         <Col>
+                              <h3>{item.name}</h3>
+                         </Col>
+                    ))}
+               </Row>
+          </>
+     );
+};
 
-export default Home
+export default Home;
