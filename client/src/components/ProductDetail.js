@@ -10,11 +10,15 @@ import {
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Rating from "./Rating";
+import { Link } from "react-router-dom";
 const ProductDetail = () => {
      const { id } = useParams();
      const product = products.find((i) => i._id === id);
      return (
           <div>
+            <Link to="/">
+              <Button className="btn btn-sm">Back</Button>
+            </Link>
                <Row>
                     <Col md={6}>
                          <Image src={product.image} alt={product.name} fluid />
@@ -57,7 +61,7 @@ const ProductDetail = () => {
                               </Row>
                          </ListGroupItem>
                          <ListGroupItem>
-                              <Button className="btn-block" type="button">
+                              <Button className="btn btn-block btn-sm" type="button">
                                    Add to Cart
                               </Button>
                          </ListGroupItem>

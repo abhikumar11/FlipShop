@@ -10,7 +10,6 @@ function App() {
                <Header />
                <main className="my-3">
                     <Container>
-                         <h1>Flip Shop</h1>
                          <Routes>
                               <Route path="/" element={<Home />} exact />
                          </Routes>
