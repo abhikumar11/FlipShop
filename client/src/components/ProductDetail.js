@@ -16,9 +16,9 @@ const ProductDetail = () => {
      const product = products.find((i) => i._id === id);
      return (
           <div>
-            <Link to="/">
-              <Button className="btn btn-sm">Back</Button>
-            </Link>
+               <Link to="/" className="btn btn-sm btn-light">
+                <i className="fas fa-arrow-left">&nbsp;Back</i>
+               </Link>
                <Row>
                     <Col md={6}>
                          <Image src={product.image} alt={product.name} fluid />
@@ -61,7 +61,10 @@ const ProductDetail = () => {
                               </Row>
                          </ListGroupItem>
                          <ListGroupItem>
-                              <Button className="btn btn-block btn-sm" type="button">
+                              <Button
+                                   className="btn btn-block btn-sm"
+                                   type="button"
+                              >
                                    Add to Cart
                               </Button>
                          </ListGroupItem>
