@@ -67,7 +67,7 @@ const ProductDetail = () => {
                                    >
                                         {product.countInStock > 0
                                              ? "In Stock"
-                                             : "Out of Stock"}
+                                             : "Not Available"}
                                    </Col>
                               </Row>
                          </ListGroupItem>
