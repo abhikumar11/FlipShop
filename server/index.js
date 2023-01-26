@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv=require('dotenv');
 const app = express();
 const product = require("./ProductData");
-
+const mongoose = require('mongoose');
 dotenv.config();
 const port=process.env.PORT;
 app.get("/products", (req, res) => {
