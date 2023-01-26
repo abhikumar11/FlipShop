@@ -17,3 +17,4 @@ const User=[
         password:bcrypt.hashSync('abc@123',10),
     },
 ]
+module.exports.User=User;
