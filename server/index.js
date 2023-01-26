@@ -14,6 +14,7 @@ const connectDb=async()=>
          process.exit(1);
      }
 }
+
 dotenv.config();
 mongoose.set('strictQuery',false);
 connectDb();
