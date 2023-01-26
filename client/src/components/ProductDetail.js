@@ -1,5 +1,4 @@
-import React from "react";
-import products from "../ProductData";
+import React, { useEffect, useState } from "react";
 import {
      Row,
      Col,
@@ -11,13 +10,25 @@ import {
 import { useParams } from "react-router-dom";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 const ProductDetail = () => {
+
      const { id } = useParams();
-     const product = products.find((i) => i._id === id);
+     const [product, setProduct] = useState([]);
+
+     const loadProduct = async () => {
+          const  {data}  = await axios.get(`/product/${id}`);
+          setProduct(data);
+     };
+
+     useEffect(() => {
+          loadProduct();
+     },[]);
      return (
           <div>
                <Link to="/" className="btn btn-sm btn-light">
-                <i className="fas fa-arrow-left">&nbsp;Back</i>
+                    <i className="fas fa-arrow-left">&nbsp;Back</i>
                </Link>
                <Row>
                     <Col md={6}>
