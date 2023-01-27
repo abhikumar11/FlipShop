@@ -3,20 +3,9 @@ const dotenv=require('dotenv');
 const app = express();
 const product = require("./ProductData");
 const mongoose = require('mongoose');
-
-const connectDb=async()=>
-{
-     try {
-         const conn=await mongoose.connect(process.env.CONNECTITON_URL); 
-         console.log('Connected to database',conn.connection.host);
-     } catch (error) {
-         console.error(error.message); 
-         process.exit(1);
-     }
-}
+const connectDb=require('./DatabaseConnection');
 
 dotenv.config();
-mongoose.set('strictQuery',false);
 connectDb();
 const port=process.env.PORT;
 app.get("/products", (req, res) => {
