@@ -7,7 +7,7 @@ const Product=require('./schema/ProductSchema');
 const product = require('./ProductData');
 const connectDb  = require('./DatabaseConnection');
 dotenv.config();
-
+connectDb();
 const insertData=async()=>{
     try {
         await Order.deleteMany();
@@ -15,7 +15,7 @@ const insertData=async()=>{
         await User.deleteMany();
         const newUser=await User.insertMany(Users);
         const admin=newUser[0]._id
-        const data=product.product.map((item)=>{
+        const data=product.map((item)=>{
             return {...item,User:admin}
         })
         await Product.insertMany(data);
@@ -32,3 +32,11 @@ const deleteData=async()=>{
         await Product.deleteMany();
         await User.deleteMany();
 };
+
+if(process.argv[2]==="-d")
+{
+    deleteData();
+}
+else{
+    insertData();
+}

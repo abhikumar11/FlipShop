@@ -77,4 +77,4 @@ const products = [
       numReviews: 12,
     },
   ]
-  module.exports.product=products;
+  module.exports=products;

@@ -5,8 +5,8 @@
      "main": "index.js",
      "scripts": {
           "start": "nodemon index",
-          "data:insert": "node server/seeder.js",
-          "data:delete": "node server/seeder.js -d"
+          "insert-data": "node seeder.js",
+          "delete-data": "node seeder.js -d"
      },
      "author": "",
      "license": "ISC",
