@@ -4,6 +4,7 @@ import Product from "./Product";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { ListProduct } from "../actions/ProductAction";
+import Loader from "./Loader";
 const Home = () => {
      const dispatch = useDispatch();
      const productList = useSelector((state) => state.productList);
@@ -15,7 +16,7 @@ const Home = () => {
      return (
           <>
                {loading ? (
-                    <h2>loading...</h2>
+                    <Loader/>
                ) : error ? (
                     <h2>{error}</h2>
                ) : (
