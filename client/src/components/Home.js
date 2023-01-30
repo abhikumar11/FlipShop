@@ -2,27 +2,31 @@ import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import Product from "./Product";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { ListProduct } from "../actions/ProductAction";
 const Home = () => {
-     const [products, setProducts] = useState([]);
-
-     const loadProduct = async () => {
-          const { data } = await axios.get("/products");
-          setProducts(data);
-     };
-
+     const dispatch = useDispatch();
+     const productList = useSelector((state) => state.productList);
+     const { loading, error, products } = productList;
      useEffect(() => {
-          loadProduct();
+          dispatch(ListProduct());
      }, []);
 
      return (
           <>
-               <Row>
-                    {products.map((item) => (
-                         <Col md={3} key={item._id}>
-                              <Product product={item} />
-                         </Col>
-                    ))}
-               </Row>
+               {loading ? (
+                    <h2>loading...</h2>
+               ) : error ? (
+                    <h2>{error}</h2>
+               ) : (
+                    <Row>
+                         {products.map((item) => (
+                              <Col md={3} key={item._id}>
+                                   <Product product={item} />
+                              </Col>
+                         ))}
+                    </Row>
+               )}
           </>
      );
 };
