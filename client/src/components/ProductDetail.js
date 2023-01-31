@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
      Row,
      Col,
@@ -7,24 +7,23 @@ import {
      Image,
      ListGroupItem,
 } from "react-bootstrap";
+import{singleProduct} from "../actions/ProductAction";
 import { useParams } from "react-router-dom";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductDetail = () => {
 
      const { id } = useParams();
-     const [product, setProduct] = useState([]);
-
-     const loadProduct = async () => {
-          const  {data}  = await axios.get(`/product/${id}`);
-          setProduct(data);
-     };
-
+     const dispatch=useDispatch();
+     const item=useSelector((state)=>state.singleProductDetails);
+     const {loading,error,product} = item;
      useEffect(() => {
-          loadProduct();
-     },[]);
+          dispatch(singleProduct(id))
+     }, [dispatch,id]) 
+     
      return (
           <div>
                <Link to="/" className="btn btn-sm btn-light">
