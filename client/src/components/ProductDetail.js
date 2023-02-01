@@ -24,7 +24,9 @@ const ProductDetail = () => {
      useEffect(() => {
           dispatch(singleProduct(id));
      }, [dispatch, id]);
-
+ const addToCart=()=>{
+     
+ }
      return (
           <>
                {loading ? (
@@ -121,7 +123,7 @@ const ProductDetail = () => {
                                    <ListGroupItem>
                                         <Button
                                              className="btn btn-block btn-sm"
-                                             type="button"
+                                             type="button" onClick={addToCart}
                                         >
                                              Add to Cart
                                         </Button>
