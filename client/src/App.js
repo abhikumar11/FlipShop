@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProductDetail from "./components/ProductDetail";
+import Cart from "./components/Cart";
 function App() {
      return (
           <BrowserRouter>
@@ -18,6 +19,9 @@ function App() {
                                    path="/product/:id"
                                    element={<ProductDetail />}
                               />
+                         </Routes>
+                         <Routes>
+                         <Route path="/cart/:id?" element={<Cart/>} />
                          </Routes>
                     </Container>
                </main>

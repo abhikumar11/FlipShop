@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {
-     Row,
-     Col,
-     Button,
-     ListGroup,
-     Image,
-     ListGroupItem,
-     FormControl,
-} from "react-bootstrap";
+import {Row,Col,Button,ListGroup,Image,ListGroupItem,FormControl} from "react-bootstrap";
 import { singleProduct } from "../actions/ProductAction";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 const ProductDetail = () => {
      const { id } = useParams();
      const [qty, setQty] = useState(1);
+     const history=useNavigate()
      const dispatch = useDispatch();
      const item = useSelector((state) => state.singleProductDetails);
      const { loading, error, product } = item;
@@ -25,7 +17,7 @@ const ProductDetail = () => {
           dispatch(singleProduct(id));
      }, [dispatch, id]);
  const addToCart=()=>{
-     
+     history(`/cart/${id}?qty=${qty}`);
  }
      return (
           <>
