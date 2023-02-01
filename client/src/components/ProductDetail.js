@@ -6,6 +6,7 @@ import {
      ListGroup,
      Image,
      ListGroupItem,
+     FormControl,
 } from "react-bootstrap";
 import { singleProduct } from "../actions/ProductAction";
 import { useParams } from "react-router-dom";
@@ -16,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 const ProductDetail = () => {
      const { id } = useParams();
-     const [qty,setQty]= useState(1);
+     const [qty, setQty] = useState(1);
      const dispatch = useDispatch();
      const item = useSelector((state) => state.singleProductDetails);
      const { loading, error, product } = item;
@@ -27,7 +28,7 @@ const ProductDetail = () => {
      return (
           <>
                {loading ? (
-                    <Loader variant='info' message='Loading' />
+                    <Loader variant="info" message="Loading" />
                ) : error ? (
                     <h2>{error}</h2>
                ) : (
@@ -80,6 +81,42 @@ const ProductDetail = () => {
                                                        : "Not Available"}
                                              </Col>
                                         </Row>
+                                   </ListGroupItem>
+                                   <ListGroupItem>
+                                        {product.countInStock > 0 && (
+                                             <ListGroupItem>
+                                                  <Row>
+                                                       <Col>Qty</Col>
+                                                       <FormControl
+                                                            as="select"
+                                                            value={qty}
+                                                            onChange={(e) =>
+                                                                 setQty(
+                                                                      e.target
+                                                                           .value
+                                                                 )
+                                                            }
+                                                       >
+                                                            {[
+                                                                 ...Array(
+                                                                      product.countInStock
+                                                                 ).keys(),
+                                                            ].map((p) => (
+                                                                 <option
+                                                                      key={
+                                                                           p + 1
+                                                                      }
+                                                                      value={
+                                                                           p + 1
+                                                                      }
+                                                                 >
+                                                                      {p + 1}
+                                                                 </option>
+                                                            ))}
+                                                       </FormControl>
+                                                  </Row>
+                                             </ListGroupItem>
+                                        )}
                                    </ListGroupItem>
                                    <ListGroupItem>
                                         <Button
