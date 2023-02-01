@@ -1,9 +1,9 @@
 import React from 'react'
 import {Spinner} from 'react-bootstrap';
-const Loader = () => {
+const Loader = (props) => {
   return (
-    <Spinner animation="border" variant="success">
-        <span className='sr-only'>Loading...</span>
+    <Spinner animation="border" variant={props.variant}>
+        <span className='sr-only'>{props.message}</span>
     </Spinner>
   )
 }

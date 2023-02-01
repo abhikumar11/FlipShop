@@ -16,7 +16,7 @@ const Home = () => {
      return (
           <>
                {loading ? (
-                    <Loader/>
+                    <Loader variant='success' message='Loading'/>
                ) : error ? (
                     <h2>{error}</h2>
                ) : (
