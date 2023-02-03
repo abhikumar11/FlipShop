@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM } from "../constants";
+import {CART_ADD_ITEM} from '../constants/CartConstants'
 export const CartReducer = (state = { cartItems: [] }, action) => {
      switch (action.type) {
           case CART_ADD_ITEM:
