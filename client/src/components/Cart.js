@@ -36,7 +36,7 @@ const Cart = () => {
      };
    
      const checkout = () => {
-       history.push("/login?redirect=shipping");
+       history("/login?redirect=shipping");
      };
      return (
        <>
@@ -58,7 +58,7 @@ const Cart = () => {
                        <Col md={3}>
                          <Link to={`/product/${item.product}`}>{item.name}</Link>
                        </Col>
-                       <Col md={2}>${item.price}</Col>
+                       <Col md={2}>₹{item.price}</Col>
                        <Col md={2}>
                          <Form.Control
                            as="select"
@@ -96,14 +96,16 @@ const Cart = () => {
              <Card>
                <ListGroup variant="flush">
                  <ListGroupItem>
-                   <h2>
+                   <h4>
                      subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
                      ) items
-                   </h2>
-                   $
+                   </h4>
+                   <h4>
+                   ₹
                    {cartItems
                      .reduce((acc, item) => acc + item.qty * item.price, 0)
                      .toFixed(2)}
+                     </h4>
                  </ListGroupItem>
                  <Button
                    type="button"
