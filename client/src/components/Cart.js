@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../actions/CartAction";
+import { addToCart, removeFromCart } from "../actions/CartAction";
 import {
      Link,
      useNavigate,
