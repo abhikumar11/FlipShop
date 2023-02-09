@@ -16,7 +16,7 @@ app.get('/',(req,res)=>{
      res.send('<h1>Welcome</h1>');
 })
 app.use("/",ProductRouter);
-//app.use("/user",UserRoutes);
+app.use("/user",UserRouter);
 app.use(errorHandler);
 
 app.listen(port, () => {
