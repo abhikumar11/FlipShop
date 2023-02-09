@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const connectDb=require('./DatabaseConnection');
 const ProductRouter=require("./routes/ProductRoutes");
 const{errorHandler}=require("./messages/ErrorMessage");
+const UserRouter=require("./routes/UserRoutes");
 dotenv.config();
 connectDb();
 const app = express();
@@ -14,7 +15,8 @@ const port=process.env.PORT;
 app.get('/',(req,res)=>{
      res.send('<h1>Welcome</h1>');
 })
-app.use(ProductRouter);
+app.use("/",ProductRouter);
+//app.use("/user",UserRoutes);
 app.use(errorHandler);
 
 app.listen(port, () => {
