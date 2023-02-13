@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Link from "react-router-dom";
+import {Link,useSearchParams } from "react-router-dom";
 import {
      Form,
      Row,
@@ -8,7 +8,6 @@ import {
      Container,
      FormGroup,
      FormLabel,
-     FormText,
      FormControl,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +17,13 @@ import { userLogin } from "../actions/UserAction";
 const Login = () => {
      const [email, setEmail] = useState("");
      const [password, setPassword] = useState("");
+     const [param] = useSearchParams();
+     const location =param.toString();
+     const redirect =location.search()? location.search().split("=")[1] : "/";
+     const submitHandler=(e)=>
+     {
+          e.preventDefault();
+     }
      return (
           <Container>
                <Row className="justify-content-md-center">
@@ -46,7 +52,13 @@ const Login = () => {
                                         }
                                    />
                               </FormGroup>
+                              <Button type="submit" variant="primary">Login</Button>
                          </Form>
+                         <Row>
+                              <Col>
+                              New User? <Link to={redirect?`register?redirect=${redirect}`:'/register'}>Sign Up</Link>
+                              </Col>
+                         </Row>
                     </Col>
                </Row>
           </Container>
