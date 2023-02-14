@@ -3,7 +3,7 @@ const{authController,getUser,registerUser}=require("../controllers/UserControlll
 const {protect}=require("../middleware/AuthMiddleWare");
 const router = express.Router();
 
-router.post("/login",() =>{authController});
+router.post("/login",authController);
 
 router.route("/profile").get(getUser);
 

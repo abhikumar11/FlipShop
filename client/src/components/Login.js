@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {Link,useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {Link,useNavigate,useSearchParams } from "react-router-dom";
 import {
      Form,
      Row,
@@ -18,17 +18,35 @@ const Login = () => {
      const [email, setEmail] = useState("");
      const [password, setPassword] = useState("");
      const [param] = useSearchParams();
+     const history=useNavigate();
      const location =param.toString();
      const redirect =location.search()? location.search().split("=")[1] : "/";
+
+     const dispatch= useDispatch();
+     const userlogin=useSelector((state)=>state.userLogin);
+     const {loading,error,userinfo}=userlogin;
+
+     useEffect(() => {
+       if(userinfo)
+       {
+          history(redirect)
+       }
+     
+      
+     }, [history,userinfo,redirect])
+     
      const submitHandler=(e)=>
      {
           e.preventDefault();
+          dispatch(userLogin(email,password));
      }
      return (
           <Container>
                <Row className="justify-content-md-center">
                     <Col xs={12} md={6}>
                          <h1>Login</h1>
+                         {error&&<Message variant='danger'>{error}</Message>}
+                         {loading&&<Loader variant='success' message='Loading'/>}
                          <Form onSubmit={submitHandler}>
                               <FormGroup controlId="email">
                                    <FormLabel>E-Mail</FormLabel>

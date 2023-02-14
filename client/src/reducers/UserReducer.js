@@ -8,15 +8,15 @@ import {
 export const userReducer = (state = {}, action) => {
      switch (action.type) {
           case USER_LOGIN_REQUEST:
-               return { loading: true };
+            return { loading: true };
           case USER_LOGIN_SUCCESS:
-               return { loading: false, userinfo: action.payload };
+            return { loading: false, userinfo: action.payload };
           case USER_LOGIN_FAIL:
-               return { loading: false, error: action.payload };
+            return { loading: false, error: action.payload };
           case USER_LOGOUT:
-               return {};
+            return {};
           default:
-               return { state };
-     }
+            return state;
+        }
 };
 
