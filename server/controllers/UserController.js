@@ -65,4 +65,28 @@ const registerUser=asyncHandler(async(req,res)=>{
   }
 })
 
-module.exports ={authController,getUser,registerUser};
+const updateUser=asyncHandler(async(req,res)=>{
+  const user=await User.findById(req.user._id);
+  if(user)
+  {
+    user.name=req.body.name||user.name;
+    user.email=req.body.email||user.email;
+    if(req.body.password)
+    {
+      user.password=req.body.password;
+    }
+    const update=await user.save();
+    res.json({
+      _id:update._id,
+      name:update.name,
+      email:update.email,
+      isAdmin:update.isAdmin,
+      token:generateToken(update._id),
+    })
+  }
+  else{
+    res.status(404);
+    throw new Error("update failed");
+  }
+})
+module.exports ={authController,getUser,registerUser,updateUser};

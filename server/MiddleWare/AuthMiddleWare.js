@@ -1,4 +1,4 @@
-const jwt=require("json-web-token");
+const jwt=require("jsonwebtoken");
 const User=require("../schema/UserSchema");
 const asyncHandler=require("express-async-handler");
 const protect=asyncHandler(async(req,res,next)=>
