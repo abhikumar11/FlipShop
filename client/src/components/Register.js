@@ -53,6 +53,7 @@ const Register = () => {
                          <h1>Sign Up</h1>
                          {error&&<Message variant='danger'>{error}</Message>}
                          {loading&&<Loader variant='success' message='Loading'/>}
+                         {message&&<Message variant="danger">{message}</Message>}
                          <Form onSubmit={submitHandler}>
                               <FormGroup controlId="name">
                                    <FormLabel>Name</FormLabel>
