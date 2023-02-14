@@ -74,7 +74,9 @@ const Login = () => {
                          </Form>
                          <Row>
                               <Col>
-                              New User? <Link to={redirect?`register?redirect=${redirect}`:'/register'}>Sign Up</Link>
+                              New User?<Link to={"/register"}>
+              Register
+            </Link>
                               </Col>
                          </Row>
                     </Col>

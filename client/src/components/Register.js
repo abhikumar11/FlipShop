@@ -86,7 +86,7 @@ const Register = () => {
                                    />
                                    </FormGroup>
                                    <FormGroup controlId="confirmpassword">
-                                   <FormLabel>Password</FormLabel>
+                                   <FormLabel>Confirm Password</FormLabel>
                                    <FormControl
                                         type="password"
                                         value={confirmpassword}
@@ -102,13 +102,7 @@ const Register = () => {
                          <Row>
                               <Col>
                                    Already Registered?
-                                   <Link
-                                        to={
-                                             redirect
-                                                  ? `login?redirect=${redirect}`
-                                                  : "/login"
-                                        }
-                                   >
+                                   <Link to={"/login"}>
                                         Login
                                    </Link>
                               </Col>
