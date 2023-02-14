@@ -44,7 +44,7 @@ const Register = () => {
          history(redirect)
       }
      
-    }, [history,user,redirect])
+    }, [history,userinfo,redirect])
      
      return (
           <Container>
