@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {Button,Col,Form,FormControl,FormGroup,FormLabel,Row} from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserDetails } from "../actions/UserAction";
+import { getUserDetails,updateUserDetails} from "../actions/UserAction";
 import Loader from "./Loader";
 import Message from "./Message";
 const Profile = () => {
