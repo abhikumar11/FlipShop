@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+     USER_DETAIL_FAIL,
+     USER_DETAIL_REQUEST,
+     USER_DETAIL_SUCCESS,
      USER_LOGIN_FAIL,
      USER_LOGIN_REQUEST,
      USER_LOGIN_SUCCESS,
@@ -12,11 +15,11 @@ import {
 export const userLogin = (email, password) => async (dispatch) => {
      try {
           dispatch({ type: USER_LOGIN_REQUEST });
-          const cofig = { headers: { "Content-Type": "application/json" } };
+          const config = { headers: { "Content-Type": "application/json" } };
           const { data } = await axios.post(
                "/user/login",
                { email, password },
-               cofig
+               config
           );
           dispatch({
                type: USER_LOGIN_SUCCESS,
@@ -48,7 +51,7 @@ export const userRegister = (name, email, password) => async (dispatch) => {
           );
           dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
           dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-          localStorage.setItem('userinfo', JSON.stringify(data));
+          localStorage.setItem("userinfo", JSON.stringify(data));
      } catch (error) {
           dispatch({
                type: USER_REGISTER_FAIL,
@@ -58,4 +61,35 @@ export const userRegister = (name, email, password) => async (dispatch) => {
                          : error.message,
           });
      }
+};
+
+export const getUserDetails = () => async (dispatch,getState) => {
+     try {
+          dispatch({
+            type: USER_DETAIL_REQUEST,
+          });
+          const {
+            userLogin: { userinfo },
+          } = getState();
+          const config = {
+            headers: {
+              "Contnet-Type": "application/json",
+              Authorization: `Bearer ${userinfo.token}`,
+            },
+          };
+          const { data } = await axios.get(`/user/profile`, config);
+      
+          dispatch({
+            type: USER_DETAIL_SUCCESS,
+            payload: data,
+          });
+        } catch (error) {
+          dispatch({
+            type: USER_DETAIL_FAIL,
+            payload:
+              error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+          });
+        }
 };

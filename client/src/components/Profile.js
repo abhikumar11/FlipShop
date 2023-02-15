@@ -1,9 +1,99 @@
-import React from 'react'
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {Button,Col,Form,FormControl,FormGroup,FormLabel,Row} from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserDetails } from "../actions/UserAction";
+import Loader from "./Loader";
+import Message from "./Message";
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+     const [name, setName] = useState("");
+     const [email, setEmail] = useState("");
+     const [password, setPassword] = useState("");
+     const [confirmPassword, setConfirmPassword] = useState("");
+     const [message, setMessage] = useState("");
+     const history = useNavigate();
+     const dispatch = useDispatch();
+     const userdetail = useSelector((state) => state.userDetail);
+     const { loading, error, user } = userdetail;
+     const userlogin = useSelector((state) => state.userLogin);
+     const { userinfo } = userlogin;
+
+     useEffect(() => {
+          if (!userinfo) {
+               history("/login");
+          } else {
+               if (!user.name) {
+                    dispatch(getUserDetails());
+               } else {
+                    setName(user.name);
+                    setEmail(user.email);
+               }
+          }
+     }, [history, userinfo, user, dispatch]);
+
+     const submitHandler = (e) => {
+          e.preventDefault();
+          if(password!==confirmPassword)
+          {
+               setMessage("Password do not match");
+          }
+     };
+     return(
+          <>
+          <Row>
+               <Col md={3}>
+                    <h1>User Profile</h1>
+                    {error && <Message varient="danger">{error}</Message>}
+                    {loading && <Loader />}
+                    {message && <Message variant="danger">{message}</Message>}
+                    <Form onSubmit={submitHandler}>
+                         <FormGroup controlId="email">
+                              <FormLabel>Name</FormLabel>
+                              <FormControl
+                                   type="text"
+                                   placeholder="Enter Name"
+                                   value={name}
+                                   onChange={(e) => setName(e.target.value)}
+                              ></FormControl>
+                         </FormGroup>
+                         <FormGroup controlId="email">
+                              <FormLabel>Email Address</FormLabel>
+                              <FormControl
+                                   type="email"
+                                   placeholder="Enter Email"
+                                   value={email}
+                                   onChange={(e) => setEmail(e.target.value)}
+                              ></FormControl>
+                         </FormGroup>
+                         <FormGroup controlId="password">
+                              <FormLabel>Password</FormLabel>
+                              <Form.Control
+                                   type="password"
+                                   placeholder="Enter Password"
+                                   value={password}
+                                   onChange={(e) => setPassword(e.target.value)}
+                              ></Form.Control>
+                         </FormGroup>
+                         <FormGroup controlId="confirmPassword">
+                              <FormLabel>Confirm Password</FormLabel>
+                              <FormControl
+                                   type="password"
+                                   placeholder="Re-enter Password"
+                                   value={confirmPassword}
+                                   onChange={(e) =>
+                                        setConfirmPassword(e.target.value)
+                                   }
+                              ></FormControl>
+                         </FormGroup>
+                         <Button type="submit" varient="primary">
+                              Update
+                         </Button>
+                    </Form>
+               </Col>
+          </Row>
+     </>
+     )
+   
+};
 
 export default Profile;
