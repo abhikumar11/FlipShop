@@ -93,3 +93,8 @@ export const getUserDetails = () => async (dispatch,getState) => {
           });
         }
 };
+
+export const updateUserDetails =(user)=>async(dispatch,getstate)=>
+{
+     
+}
