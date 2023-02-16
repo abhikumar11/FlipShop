@@ -36,7 +36,7 @@ const Cart = () => {
      };
    
      const checkout = () => {
-       history("/login?redirect=shipping");
+       history("/shipping");
      };
      return (
        <>

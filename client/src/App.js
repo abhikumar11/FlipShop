@@ -8,6 +8,7 @@ import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import Shipping from "./components/Shipping";
 function App() {
      return (
           <BrowserRouter>
@@ -34,6 +35,9 @@ function App() {
                          </Routes>
                          <Routes>
                          <Route path="/profile" element={<Profile/>}/>
+                         </Routes>
+                         <Routes>
+                         <Route path="/shipping" element={<Shipping/>}/>
                          </Routes>
                     </Container>
                </main>
