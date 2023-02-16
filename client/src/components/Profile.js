@@ -48,7 +48,7 @@ const Profile = () => {
           <>
                <Row>
                     <Col md={3}>
-                         <h1>User Profile</h1>
+                         <h4>User Profile</h4>
                          {error && <Message varient="danger">{error}</Message>}
                          {success && (
                               <Message variant="success">

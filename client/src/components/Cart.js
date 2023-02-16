@@ -44,7 +44,7 @@ const Cart = () => {
            <Col md={8}>
              <h1>Shopping Cart</h1>
              {cartItems.length === 0 ? (
-               <Message>
+               <Message variant='warning'>
                  Your Cart is Empty !<Link to="/">Start Shopping</Link>
                </Message>
              ) : (
@@ -113,7 +113,7 @@ const Cart = () => {
                    disabled={cartItems.length === 0}
                    onClick={checkout}
                  >
-                   Proceed to checkOut
+                   Proceed to checkout
                  </Button>
                </ListGroup>
              </Card>
