@@ -12,6 +12,7 @@ import {
 import {useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {userShippingAddress} from "../actions/CartAction";
+import Checkout from "./Checkout";
 const Shipping = () => {
      const cart = useSelector((state) => state.cart);
      const { shippingAddress } = cart;
@@ -30,6 +31,7 @@ const Shipping = () => {
           <Container>
                <Row className="justify-content-md-center">
                     <Col md={6} xs={12}>
+                         <Checkout step1 step2/>
                          <Form onSubmit={submitHandler}>
                               <FormGroup controlId="address">
                                    <FormLabel>Address</FormLabel>
