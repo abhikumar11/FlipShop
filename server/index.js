@@ -6,6 +6,7 @@ const connectDb=require('./DatabaseConnection');
 const ProductRouter=require("./routes/ProductRoutes");
 const{errorHandler}=require("./messages/ErrorMessage");
 const UserRouter=require("./routes/UserRoutes");
+const OrderRouter=require("./routes/OrderRoutes");
 dotenv.config();
 connectDb();
 const app = express();
@@ -17,6 +18,7 @@ app.get('/',(req,res)=>{
 })
 app.use("/",ProductRouter);
 app.use("/user",UserRouter);
+app.use("/order",OrderRouter);
 app.use(errorHandler);
 
 app.listen(port, () => {

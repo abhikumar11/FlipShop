@@ -10,6 +10,7 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Shipping from "./components/Shipping";
 import Payment from "./components/Payment";
+import Order from "./components/Order";
 function App() {
      return (
           <BrowserRouter>
@@ -42,6 +43,9 @@ function App() {
                          </Routes>
                          <Routes>
                               <Route path="/payment" element={<Payment/>}/>
+                         </Routes>
+                         <Routes>
+                              <Route path="/placeorder" element={<Order/>}/>
                          </Routes>
                     </Container>
                </main>

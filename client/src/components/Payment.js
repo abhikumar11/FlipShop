@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {paymentMethod} from "../actions/CartAction";
-import {Col,Form,Button,FormGroup,FormLabel} from "react-bootstrap";
+import {Col,Form,Button,FormGroup,FormLabel, FormCheck} from "react-bootstrap";
 import Checkout from "./Checkout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
@@ -28,14 +28,38 @@ const Payment = () => {
     <FormGroup>
       <FormLabel as="legend">Select Payment Method</FormLabel>
       <Col>
-        <Form.Check
+         <FormCheck
           type="radio"
-          label="Paypal or Credit Card"
-          id="paypal"
+          label="Unified Payment Interface (UPI)"
+          id="pay"
           name="paymentMethod"
-          value="paypal"
+          value="upi"
           onChange={(e) => setPayment(e.target.value)}
-        ></Form.Check>
+        ></FormCheck>
+        <FormCheck
+          type="radio"
+          label="Credit/Debit card"
+          id="pay"
+          name="paymentMethod"
+          value="cddc"
+          onChange={(e) => setPayment(e.target.value)}
+        ></FormCheck>
+         <FormCheck
+          type="radio"
+          label="Net Banking"
+          id="pay"
+          name="paymentMethod"
+          value="netbanking"
+          onChange={(e) => setPayment(e.target.value)}
+        ></FormCheck>
+            <FormCheck
+          type="radio"
+          label="Cash on Delivery (COD)"
+          id="pay"
+          name="paymentMethod"
+          value="cod"
+          onChange={(e) => setPayment(e.target.value)}
+        ></FormCheck>
       </Col>
     </FormGroup>
     <Button type="submit" variant="primary">

@@ -1,4 +1,3 @@
-
 const User = require("../schema/UserSchema");
 const asyncHandler = require("express-async-handler");
 const generateToken=require("../tokens/GenerateToken");
